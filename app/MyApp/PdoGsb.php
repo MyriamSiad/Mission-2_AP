@@ -41,6 +41,7 @@ class PdoGsb{
 		return $ligne;
 	}
 
+
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais au forfait
      *  concernées par les deux arguments
@@ -212,6 +213,22 @@ class PdoGsb{
 		$this->monPdo->exec($req);
 	}
 
+
+	/***************************************          Ma partie ****************/
+
+ /**
+     * Retourne les informations d'un visiteur
+     * @param $login
+     * @param $mdp
+     * @return mixed l'id, le nom et le prénom sous la forme d'un tableau associatif
+     */
+	public function getInfosComptable($login, $mdp){
+		$req = "select comptable.id as id, comptable.nom as nom, comptable.prenom as prenom from comptable
+        where comptable.login='" . $login . "' and comptable.mdp='" . $mdp ."'";
+    	$rs = $this->monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
 
 
 

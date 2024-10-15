@@ -1,5 +1,5 @@
 @extends ('modeles/visiteur')
- @section('contenu1')
+@section('contenu1')
 <div id = "contenu">
     <h2>Identification utilisateur</h2>
 <form method = "post" action = "">
