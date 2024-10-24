@@ -7,11 +7,12 @@ use PdoGsb;
 class connexionController extends Controller
 {
     function connecter(){
-        
+        session(['visiteur' => null]);
+        session(['comptable' => null]);
         return view('connexion')->with('erreurs',null);
     } 
     function valider(Request $request){
-
+      
 
         $login = $request['login'];
         $mdp = $request['mdp'];
@@ -28,8 +29,8 @@ class connexionController extends Controller
 
         else {
 
-            session(['comptable' => $comptable]);
-            return view('sommaire_comptable')->with('comptable',session('comptable'));
+            session(key: ['comptable' => $comptable]);
+            return view(view: 'sommaire_comptable')->with(key: 'comptable',value: session(key: 'comptable'));
         }
     } 
     function deconnecter(){

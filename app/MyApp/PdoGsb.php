@@ -231,6 +231,87 @@ class PdoGsb{
 	}
 
 
+	/******************** Récuperer les noms des utilisateurs, pour les afficher dans une liste déroulante*/
+
+	public function getNomVisiteur(): mixed
+	{
+		$req = "SELECT visiteur.Nom AS nom, visiteur.Prenom AS prenom , visiteur.id AS id, 
+		fichefrais.mois AS mois, 
+		fichefrais.nbJustificatifs AS Fiche, 
+		fichefrais.montantValide AS montant,
+		fichefrais.dateModif AS date,
+		fichefrais.idEtat AS etat 
+		 FROM visiteur
+		 INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
+		 INNER JOIN etat on etat.id = fichefrais.idEtat
+		 WHERE idEtat = ? ";
+		
+		 $idEtat = "VA";
+		
+		$rs = $this->monPdo->prepare($req);
+		$rs->execute([$idEtat]);
+		$ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+		return $ligne;
+	
+		
+		
+		
+		
+	}
+
+
+	public function setValidation($idVisiteurs,$lesMois): mixed
+	{
+		// On update la table avec les différentes lignes selectionner
+		$req = "UPDATE fichefrais 
+        SET idEtat = ?, dateModif = CURDATE()
+        WHERE idVisiteur = ? AND mois =  ?";
+
+		// Ici on prepare la requete 
+		$rs = $this->monPdo->prepare($req);
+
+		
+
+		// Puis ici on fait un Foreach sur le nombre de ID contenu dans $idVisiteurs
+		// $idVisiteurs est un tableau contenant tous les ID selectionner 
+
+			$rs = $this->monPdo->prepare($req);
+
+			// Mettre à jour l'état à "RB" (remboursée)
+			$idEtat = "RB";
+		
+			// Exécuter la requête pour chaque visiteur et mois
+			$rs->execute([$idEtat, $idVisiteurs, $lesMois]);
+
+        
+
+		// Ensuite ici on récupère la nouvelle liste de Fiche Frais Remboursé 
+		// QU'on va afficher par la suite dans un autre tableau 
+		// Appeler les fiches récements remboursé 
+		$req2 = "SELECT visiteur.Nom AS nom, visiteur.Prenom AS prenom , visiteur.id AS id, 
+		fichefrais.mois AS mois, 
+		fichefrais.nbJustificatifs AS Fiche, 
+		fichefrais.montantValide AS montant,
+		fichefrais.dateModif AS date,
+		fichefrais.idEtat AS etat 
+		 FROM visiteur
+		 INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
+		 INNER JOIN etat on etat.id = fichefrais.idEtat
+		 WHERE idEtat = ? AND dateModif = CURDATE() ";
+
+		$rs2 = $this->monPdo->prepare($req2);
+		$idEtat = "RB";
+		$rs2->execute([$idEtat]);
+
+
+		// Ici on va récupérer toutes les lignes des fiches Frais 
+		// Récemment Modifié et remboursé 
+		$ligne = $rs2->fetchAll(PDO::FETCH_ASSOC);
+		return $ligne;
+
+	}
+
+	
 
 
 }
