@@ -129,7 +129,7 @@ class gererFraisComptableController extends Controller
         public function ExportePDF()
         {
             $lesFiches = PdoGSB :: getFiche();
-            $pdf = Pdf::loadView('fiche_paiement_pdf', compact('fiches'));
+            $pdf = Pdf::loadView('fiche_paiement_pdf', compact('lesFiches'));
             return $pdf->download('fiche_paiement.pdf');
 
         }
