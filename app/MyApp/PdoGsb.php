@@ -311,6 +311,32 @@ class PdoGsb{
 
 	}
 
+
+	// Pour récupérer tout les fiches qui on été modifier pour la dernière fois 
+	// le mois Dernnier mais à la même année 
+	public function getFiche()
+	{
+		$req = "SELECT visiteur.Nom AS nom, Visiteur.Prenom AS prenom, visiteur.id AS id,
+		fichefrais.mois AS mois, 
+		fichefrais.nbJustificatifs AS Fiche, 
+		fichefrais.montantValide AS montant,
+		fichefrais.dateModif,
+		fichefrais.idEtat AS etat 
+		 FROM visiteur
+		 INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
+		 INNER JOIN etat on etat.id = fichefrais.idEtat
+		 WHERE idEtat = ? 
+		 AND YEAR(dateModif) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+ 		 AND MONTH(dateModif) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH);";
+
+		 $rs = $this ->monPdo->prepare($req);
+		 $idEtat = "VA";
+		 $rs->execute([$idEtat]);
+
+		 $ligne = $rs->fetchAll(PDO::FETCH_ASSOC);
+		 return $ligne;
+	}
+
 	
 
 

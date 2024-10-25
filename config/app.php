@@ -127,5 +127,6 @@ return [
         'PdoGsb' => App\Facades\PdoGsb::class,
         'MyDate' => App\Facades\MyDate::class,
         'MyApp' => App\Facades\MyApp::class,
+        'Pdf' => Barryvdh\DomPDF\Facade\Pdf::class,
     ],
 ];
