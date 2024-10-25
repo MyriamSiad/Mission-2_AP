@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PdoGsb;
 use MyDate;
+use Barryvdh\DomPDF\Facade\Pdf;
 class gererFraisComptableController extends Controller
 {
     public function afficheVisiteur()
@@ -100,8 +101,38 @@ class gererFraisComptableController extends Controller
             return $view;
         }
        
-       
     
+       
+        public function Fiches()
+        {
+            if (session('comptable') != null)
+            {
+                $comptable = session('comptable');
+                $idComptable = $comptable['id'];
+                $lesFiches = PdoGsb::getFiche();
+                $view = view('Edition_Fiche_Frais')
+                ->with('lesFiches', $lesFiches)
+                ->with ('comptable',$comptable);
+            }
+
+            else
+            {
+                
+                return redirect()->route('chemin_connexion');
+           
+            }
+            
+            return $view;
+        }
+
+
+        public function ExportePDF()
+        {
+            $lesFiches = PdoGSB :: getFiche();
+            $pdf = Pdf::loadView('fiche_paiement_pdf', compact('fiches'));
+            return $pdf->download('fiche_paiement.pdf');
+
+        }
     
 }
 

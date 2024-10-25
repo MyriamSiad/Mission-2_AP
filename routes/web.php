@@ -26,12 +26,18 @@ Route::controller(gererFraisController::class)->group(function () {
 });
 
 
+
+
+
 /***** Mes Routes ****************/
 Route::controller(gererFraisComptableController::class)->group(function () {
     Route::get('/SuivieFrais', 'afficheVisiteur')->name('cheminVisiteur');
     Route::get('/Validation','afficheVisiteur')->name('cheminVisiteur');
     Route::post('/Validation', 'Validation')->name('cheminRemboursement');
-    Route::post('/sauvegarderFrais', 'sauvegarderFrais')->name('chemin_sauvegardeFrais');
+    Route::get('/Edition', 'Fiches')->name('cheminEdition');
+    Route::post('/EditionPDF', 'ExportePDF')->name('cheminEditionPDF');
+   // Route::post('/EditionFiche','')->name('cheminEdition');
+
 });
 
 
