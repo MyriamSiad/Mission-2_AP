@@ -31,7 +31,7 @@ Route::controller(gererFraisController::class)->group(function () {
 
 /***** Mes Routes ****************/
 Route::controller(gererFraisComptableController::class)->group(function () {
-    Route::get('/SuivieFrais', 'afficheVisiteur')->name('cheminVisiteur');
+    //Route::get('/SuivieFrais', 'afficheVisiteur')->name('cheminVisiteur');
     Route::get('/Validation','afficheVisiteur')->name('cheminVisiteur');
     Route::post('/Validation', 'Validation')->name('cheminRemboursement');
     Route::get('/Edition', 'Fiches')->name('cheminEdition');

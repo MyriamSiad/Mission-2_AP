@@ -214,7 +214,7 @@ class PdoGsb{
 	}
 
 
-	/***************************************          Ma partie ****************/
+	/***************************************  Ma partie ****************/
 
  /**
      * Retourne les informations d'un visiteur
