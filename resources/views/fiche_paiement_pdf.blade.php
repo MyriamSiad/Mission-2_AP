@@ -1,4 +1,17 @@
-<table class="table table-striped-columns table-bordered">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Export PDF</title>
+    
+    <!-- Lien vers le fichier CSS dans le dossier public -->
+   
+</head>
+<body>
+<table class="table table-striped-columns table-bordered" >
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -28,7 +41,6 @@
             <td>{{ $fiche['etat'] }}</td>
             <td>{{ $fiche['dateModif'] }}</td>
             <td> A venir</td>
-            <td>
              
             
           </tr> 
@@ -37,3 +49,6 @@
         
       </tbody>
   </table>
+
+</body>
+</html>

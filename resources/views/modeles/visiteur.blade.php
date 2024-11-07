@@ -4,6 +4,8 @@
   <head>
     <title>Intranet du Laboratoire Galaxy-Swiss Bourdin</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="./images/logoIco.ico" />
   </head>

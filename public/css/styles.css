@@ -1,6 +1,5 @@
 /* Styles des divisions principales de la page */
 
-@import 'bootstrap';
 body {
     background-color: #77AADD;
     background-image: url(imgs/FONDGLOBAL.jpg);
@@ -149,21 +148,49 @@ ul#menuList a:hover {
 }
 
 .piedForm {
-    border-bottom-width: 0.1em;
-    border-left-width: 0.1em;
-    border-right-width: 0.1em;
-    border-top-width: 0em;
-    border-style: solid;
-    border-color: #000;
-    text-align: right;
-    width: 95%;
-    margin-top: 0em;
+   
+    display: flex;
+    margin-top: 0.5em;
+    width: auto;
+    height: auto;
+    margin : auto;
+    padding: 15px;
+    justify-content: space-evenly;
 }
+
+#ok{
+    width: auto;
+    height: auto;
+    margin : auto;
+}
+
+#annuler
+{
+    width: auto;
+    height: auto;
+    margin : auto;
+}
+
 
 form {
     margin-bottom: 1em;
 }
 
+#card 
+{
+    margin-bottom: 1em;
+}
+
+.Rembourser
+{
+
+    margin : auto;
+    padding : auto;
+    height:  auto;
+    width: auto;
+  
+
+}
 .corpsForm legend {
     font-weight: bold;
     font-size: 1.2em;
@@ -178,6 +205,10 @@ form {
     line-height: 1.8;
 }
 
+.card-header
+{
+    background-color: #6988BE;
+}
 input,
 button,
 textarea,
@@ -187,8 +218,8 @@ select {
 }
 
 button {
-    width: 60px;
-    height: 30px;
+    width: auto;
+    height: auto;
     text-align: center;
     vertical-align: middle;
 }
@@ -259,7 +290,7 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 
 
 /* Styles pour les tableaux de la page principale */
-
+/*
 #contenu table {
     background-color: #FFF;
     border: 0.1em solid #777777;
@@ -269,9 +300,9 @@ taille de caract�res l�g�rement sup�rieure � la normale */
     border-collapse: collapse;
 }
 
-
+*/
 /* Style pour les lignes d'en-t�te des tableaux */
-
+/*
 #contenu th {
     background-color: #77AADD;
     height: 21px;
@@ -281,7 +312,8 @@ taille de caract�res l�g�rement sup�rieure � la normale */
     border-bottom: 0.1em solid #777777;
     font-size: 1.1em;
 }
-
+    */
+/*
 #contenu td {
     border: 1px solid #777777;
 }
@@ -291,10 +323,10 @@ taille de caract�res l�g�rement sup�rieure � la normale */
 }
 
 table.listeLegere {
-    /*    width:80%;*/
+
     margin-bottom: 0.5em;
 }
-
+*/
 
 /* Tableaux quadrill�s utilis�s pour l'affichage de listes avec contenu l�ger*/
 
@@ -357,7 +389,3 @@ table.listeLegere th.libelle {
 }
 
 
-#tabSuivie
-{
-    ;
-}

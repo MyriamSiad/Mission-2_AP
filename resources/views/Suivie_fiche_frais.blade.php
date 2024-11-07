@@ -6,69 +6,47 @@
  
       <form  action="{{route('cheminRemboursement')}}" id = "formulaire" method="POST">
         {{ csrf_field() }} <!-- laravel va ajouter un champ caché avec un token -->
-        <h1>Liste des visiteurs</h1>
-
-     
-        <!-- Liste déroulante -->
+        <h1>Liste des fiches à Valider : </h1>
+       
+        @foreach($lesVisiteurs as $visiteur)
+        <div class="card" id = "card">
+          <h5 class="card-header">{{ $visiteur['nom'] }} - {{ $visiteur['prenom'] }}</h5>
+          <div class="card-body">
+            
+            <h5 class="card-title"> Date : {{ $visiteur['mois'] }}  </h5>
+            <h6 class="card-title"> Etat : {{ $visiteur['etat'] }}  </h5>
+            <p class="card-text"> Montant :  {{ $visiteur['montant'] }}  € </p>
+            <p> <strong> Selectionner : </strong>
+            <input type="checkbox"  class="btn btn-primary" name="visiteur_ids[]" value="{{$visiteur['id']}}-{{$visiteur['mois']}}" />
+            </p> 
+          </div>
+          
+        </div>  
         
-        <table class="table table-striped-columns table-bordered" >
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prenom </th>
-              <th scope="col">Montant</th>
-              <th scope="col">Mois</th>
-              <th scope="col">Etat</th>
-              <th scope="col">Date de Validation </th>
-              <th scope="col">Date de remboursement</th>
-              <th scope="col">Selectionner / Valider </th>
-            </tr>
-          </thead>
+          @endforeach
+        
+          <div class="piedForm">
          
-            <tbody class="table-group-divider">
-              {{ $i = 1 }}
-              @foreach($lesVisiteurs as $visiteur)
-            <div>
-                <tr>
-                  <td> {{ $i++}} </td>
-                  
-                
-                  <td>{{ $visiteur['nom'] }} </td>
-                  <td> {{ $visiteur['prenom'] }}</td>
-                  <td>{{ $visiteur['montant'] }}</td>
-                  <td>{{ $visiteur['mois'] }}</td>
-                  <td>{{ $visiteur['etat'] }}</td>
-                  <td>{{ $visiteur['date'] }}</td>
-                  <td>{{ $visiteur['date'] }}</td>
-                  <td>
-                    <input type="checkbox" name="visiteur_ids[]" value="{{$visiteur['id']}}-{{$visiteur['mois']}}" />
-                </td>
-                  
-                </tr> 
-              <div>    
-             @endforeach
-              
-            </tbody>
-        </table>
-          
-        <div class="piedForm">
-        <p>
-          <input id="ok" type="submit" value="Valider" size="20" />
-          <input id="annuler" type="reset" value="Effacer" size="20" />
-        </p> 
-        </div>
-          
-        </form>
 
+              <button  id="ok" type="submit" value="Valider"  class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                Valider
+              </button>
+             
+              <button  id="annuler" type="reset" type="submit" value="Effacer" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off"> Effacer
+              </button>
+          
+           
+            </div>
+          </form>
 
+    
         <!-- On affiche les récement remboursé une fois qu'on a valider -->
-        @if (isset($Validations))
+       
        
         <h1>Liste des visiteurs récemment remboursé</h1>
-        <table class="table table-striped-columns table-bordered">
-          <thead>
-            <tr>
+        <table class="table table-striped-columns table-bordered Rembourser">
+          <thead class="table-success">
+            <tr >
               <th scope="col">#</th>
               <th scope="col">Nom</th>
               <th scope="col">Prenom </th>
@@ -80,8 +58,8 @@
           
             </tr>
           </thead>
-         
-            <tbody class="table-group-divider">
+          @if (isset($Validations))
+            <tbody  class="table-group-divider ">
               {{ $i = 1 }}
               @foreach($Validations as $valider)
             
@@ -90,7 +68,7 @@
                   
                 
                   <td>{{$valider['nom'] }} </td>
-                  <td> {{ $valider['prenom'] }}</td>
+                  <td> {{$valider['prenom'] }}</td>
                   <td>{{ $valider['montant'] }}</td>
                   <td>{{$valider['mois'] }}</td>
                   <td>{{ $valider['etat'] }}</td>

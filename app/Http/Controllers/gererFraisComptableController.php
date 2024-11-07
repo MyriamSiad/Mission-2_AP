@@ -33,12 +33,14 @@ class gererFraisComptableController extends Controller
             $comptable = session('comptable');
              // Récupérer les visiteurs
             $lesVisiteurs = PdoGsb::getNomVisiteur();
+            $recent = PdoGsb::getRecentValidation();
             // $lePrenom  = $lesVisiteurs['prenom'];
             //  $leNom = $lesVisiteurs['nom'];
             // Vérification si des visiteurs existent et si le premier élément est bien un objet 
             $view = view('Suivie_fiche_frais')
                         ->with('lesVisiteurs', $lesVisiteurs)               
-                        ->with ('comptable',$comptable);
+                        ->with ('comptable',$comptable)
+                        ->with('Validations',$recent);
         }   
     
             return $view;
@@ -59,17 +61,12 @@ class gererFraisComptableController extends Controller
             else 
             {
                 return redirect()->route('chemin_connexion'); 
-            }
-           
-            
+            }   
         // Récupérer les visiteurs à modifié qui on été séléctionné
            if (isset($_POST['visiteur_ids'])) 
            
            {
-
             $LesInfos = $_POST['visiteur_ids'];
-        
-            
             foreach ($LesInfos as $fiche) 
             {
                 // Séparer l'idVisiteur et le mois
@@ -77,17 +74,19 @@ class gererFraisComptableController extends Controller
         
                 // Appeler votre fonction de mise à jour
                $Validations =  PdoGsb::setValidation($idVisiteur, $mois);
-            }
+               $afficher = gererFraisComptableController::afficheVisiteur();
+               return $afficher;
+            }          
                   
            }
-                   // Ici on change la variable view à l'aide de la fonction crée précedamment
-           $afficher = gererFraisComptableController::afficheVisiteur() -> with ('Validations',$Validations);
-       
-           return $afficher;
+           else
+           {
+            return redirect()->route('chemin_connexion');
+           }        
          
         }
        
-    
+
        
         public function Fiches()
         {

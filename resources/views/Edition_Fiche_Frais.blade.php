@@ -11,8 +11,8 @@
 
         <!-- Liste déroulante -->
         
-        <table class="table table-striped-columns table-bordered">
-          <thead>
+        <table class="table table-striped-columns table-bordered ">
+          <thead class=" table-info">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
@@ -30,19 +30,17 @@
               {{ $i = 1 }}
               @foreach($lesFiches as $fiche)
             
-                <tr>
+                <tr >
                   <td> {{ $i++}} </td>
                   
                 
-                  <td>{{$fiche['nom'] }} </td>
+                  <td >{{$fiche['nom'] }} </td>
                   <td> {{$fiche['prenom'] }}</td>
                   <td>{{ $fiche['montant'] }}</td>
                   <td>{{ $fiche['mois'] }}</td>
                   <td>{{ $fiche['etat'] }}</td>
                   <td>{{ $fiche['dateModif'] }}</td>
-                  <td> A venir</td>
-                  <td>
-                   
+                  <td> A venir</td>     
                   
                 </tr> 
                   
@@ -55,7 +53,7 @@
         <p>
           <form action="{{route('cheminEditionPDF')}}" method="POST">
             {{ csrf_field() }}
-          <button type="submit" class="btn btn-primary">Exporter en PDF  d</button>
+          <button type="submit" class="btn btn-primary">Exporter en PDF</button>
           
         </p> 
         </div>

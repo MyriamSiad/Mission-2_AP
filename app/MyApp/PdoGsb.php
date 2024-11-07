@@ -240,7 +240,7 @@ class PdoGsb{
 		fichefrais.nbJustificatifs AS Fiche, 
 		fichefrais.montantValide AS montant,
 		fichefrais.dateModif AS date,
-		fichefrais.idEtat AS etat 
+		etat.libelle AS etat 
 		 FROM visiteur
 		 INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
 		 INNER JOIN etat on etat.id = fichefrais.idEtat
@@ -260,7 +260,7 @@ class PdoGsb{
 	}
 
 
-	public function setValidation($idVisiteurs,$lesMois): mixed
+	public function setValidation($idVisiteurs,$lesMois): void
 	{
 		// On update la table avec les différentes lignes selectionner
 		$req = "UPDATE fichefrais 
@@ -283,12 +283,18 @@ class PdoGsb{
 			// Ensuite ici on récupère la nouvelle liste de Fiche Frais Remboursé 
 			// QU'on va afficher par la suite dans un autre tableau 
 			// Appeler les fiches récements remboursé 
-			$req2 = "SELECT visiteur.Nom AS nom, visiteur.Prenom AS prenom , visiteur.id AS id, 
+			
+
+	}
+
+	public function getRecentValidation(): mixed
+	{
+		$req2 = "SELECT visiteur.Nom AS nom, visiteur.Prenom AS prenom , visiteur.id AS id, 
 			fichefrais.mois AS mois, 
 			fichefrais.nbJustificatifs AS Fiche, 
 			fichefrais.montantValide AS montant,
 			fichefrais.dateModif AS date,
-			fichefrais.idEtat AS etat 
+			etat.libelle AS etat 
 			FROM visiteur
 			INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
 			INNER JOIN etat on etat.id = fichefrais.idEtat
@@ -305,7 +311,6 @@ class PdoGsb{
 			
 		
 			return $ligne;
-
 	}
 
 
@@ -318,7 +323,7 @@ class PdoGsb{
 		fichefrais.nbJustificatifs AS Fiche, 
 		fichefrais.montantValide AS montant,
 		fichefrais.dateModif,
-		fichefrais.idEtat AS etat 
+		etat.libelle AS etat 
 		 FROM visiteur
 		 INNER JOIN fichefrais on fichefrais.idVisiteur = visiteur.id
 		 INNER JOIN etat on etat.id = fichefrais.idEtat
