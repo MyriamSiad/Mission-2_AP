@@ -61,7 +61,8 @@ class gererFraisController extends Controller{
             return $view->with('erreurs',$erreurs)
                         ->with('message',$message);
         }
-        else{
+        else
+        {
             return view('connexion')->with('erreurs',null);
         }
 

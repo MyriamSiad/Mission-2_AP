@@ -17,6 +17,7 @@
       @yield('contenu1')
       @yield('contenu2')
      </div>
-
+     <script src="{{asset('js/app.js')}}"></script>
     </body>
+   
   </html>

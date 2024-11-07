@@ -4,14 +4,14 @@
     @section('contenu1')
       <div id="contenu">
  
-      <form action="{{route('cheminRemboursement')}}" method="POST">
+      <form  action="{{route('cheminRemboursement')}}" id = "formulaire" method="POST">
         {{ csrf_field() }} <!-- laravel va ajouter un champ caché avec un token -->
         <h1>Liste des visiteurs</h1>
 
-
+     
         <!-- Liste déroulante -->
         
-        <table class="table table-striped-columns table-bordered">
+        <table class="table table-striped-columns table-bordered" >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -29,7 +29,7 @@
             <tbody class="table-group-divider">
               {{ $i = 1 }}
               @foreach($lesVisiteurs as $visiteur)
-            
+            <div>
                 <tr>
                   <td> {{ $i++}} </td>
                   
@@ -46,7 +46,7 @@
                 </td>
                   
                 </tr> 
-                  
+              <div>    
              @endforeach
               
             </tbody>
@@ -61,9 +61,10 @@
           
         </form>
 
+
         <!-- On affiche les récement remboursé une fois qu'on a valider -->
         @if (isset($Validations))
-     
+       
         <h1>Liste des visiteurs récemment remboursé</h1>
         <table class="table table-striped-columns table-bordered">
           <thead>
@@ -104,5 +105,8 @@
             </tbody>
 
         </table>
+
+     
 @endif
+
 @endsection 

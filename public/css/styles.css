@@ -1,5 +1,6 @@
 /* Styles des divisions principales de la page */
 
+@import 'bootstrap';
 body {
     background-color: #77AADD;
     background-image: url(imgs/FONDGLOBAL.jpg);
@@ -353,4 +354,10 @@ table.listeLegere th.libelle {
     color: rgb(0, 0, 205);
     font-size: 1.1em;
     width: 95%;
+}
+
+
+#tabSuivie
+{
+    ;
 }
